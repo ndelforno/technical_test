@@ -74,5 +74,5 @@ end
 #5. How could the following data structure be improved?
 
 - create multiples tables instead of one: a table for person and a table for pet
-- join these tables with relationship and provide pet with a pet_owner_id 
-- give a last_name attribute to differenciate person with same name
+- join these tables with one to many relationship by providing pet with a pet_owner_id
+- give a last_name attribute to differenciate person with same name (not mandatory because id could do that)
