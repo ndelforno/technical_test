@@ -24,9 +24,10 @@ def buy(customer)
     :choices => ["yes", "no"])
 end
 
-def received_answer(email_answer) #will pass params[:answer]
-  @customer.email_answer = email_answer #save customer answer
-  if @customer.email_answer == "Yes"
+#if answer received
+def received_answer(email_answer) #will pass params[:choices]
+  @customer.email_answer = email_answer #save customer's answer
+  if @customer.email_answer === "Yes"
     if @customer.google_logged === true
       redirect_to "https://www.google.com"
     elsif @customer.facebook_logged === true
@@ -36,8 +37,8 @@ def received_answer(email_answer) #will pass params[:answer]
     end
   else
     redirect_to "https//my_site/survey"
-    survey[:subject] => "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
-    @customer.survey_answer = params[:survey_answer]
+    render "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
+    @customer.survey_answer = params[:survey_answer] #save customer's survey answer
   end
 end
 
