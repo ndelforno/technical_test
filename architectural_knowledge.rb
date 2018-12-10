@@ -1,4 +1,4 @@
-
+#Architectural Knowledge
 @customer = {:name => "john", :last_name => "smith", :email => "john@gmail.com", :facebook_logged => false, :google_logged => false, :email_answer => "" }
 
 def buy
@@ -8,8 +8,8 @@ def buy
     :choices => ["yes", "no"])
 end
 
-def received_answer
-  @customer.email_answer = params[:answer][:choices] #save customer answer
+def received_answer(answer)
+  @customer.email_answer = answer #save customer answer
 end
 
 if @customer.email_answer != "" #check if there is an answer
@@ -35,6 +35,7 @@ end
 # end
 #
 # if customer has answered do
+#   save answer
 #   if answer = yes && customer is logged into google
 #     redirect to google
 #   elsif answer = yes && customer is logged into facebook
