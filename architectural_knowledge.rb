@@ -1,40 +1,43 @@
 #Architectural Knowledge
 
-@customer = {:name => "john",
-   :last_name => "smith",
-   :email => "john@gmail.com",
-   :facebook_logged => false,
-   :google_logged => false,
+customer = {:id => 1,
+  :name => "john",
+  :last_name => "smith",
+  :email => "john@gmail.com",
+  :facebook_logged => false,
+  :google_logged => false,
  }
 
-@survey = {:qestion => "would your recommend us to a friend",
-:customer_id => "",
-:email_answer => "",
-:survey_answer => "" }
+survey = {:question => "would your recommend us to a friend",
+  :customer_id => "",
+  :email_answer => "",
+  :survey_answer => ""
+}
 
-def buy(customer)
+def buy(customer, survey)
   mail (:to => customer.email,
-    :subject => @survey.question,
+    :subject => survey.question,
     :link => "https//my_site/survey"
     :choices => ["yes", "no"])
 end
 
 #when answer received
-def received_answer(email_answer) #will pass params[:choices]
-  @customer.email_answer = email_answer #save customer's answer
-  if @customer.email_answer === "Yes"
-    if @customer.google_logged === true
+def received_answer(email_answer, customer, survey) #email_answer will be params[:customer_choice]
+  survey.email_answer = email_answer #save customer's answer
+  survey.customer_id = customer.id #save customer's id in survey's table
+  if survey.email_answer === "Yes"
+    if customer.google_logged === true
       redirect_to "https://www.google.com"
-    elsif @customer.facebook_logged === true
+    elsif customer.facebook_logged === true
       redirect_to "https://www.facebook.com"
     else
       render thank_you_page
     end
   else
     redirect_to "https//my_site/survey"
-    render "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
-    @survey.customer_id = @customer.id #save customer's id in survey table
-    @survey.survey_answer = params[:survey_answer] #save customer's survey answer
+    survey.question = "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
+    print survey.question
+    survey.survey_answer = params[:survey_answer] #save customer's survey answer
   end
 end
 

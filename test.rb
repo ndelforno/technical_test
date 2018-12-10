@@ -11,15 +11,16 @@ end
 
 Has a job:
 
-def mail_subscribers_with(id)
-  MAIL_SUBSCRIBERS_QUEUE.push :id => id
-end
+  def mail_subscribers_with(id)
+    MAIL_SUBSCRIBERS_QUEUE.push :id => id
+  end
 
 And has a queue:
-  MAIL_SUBSCRIBERS_QUEUE = HackerFriday::WorkQueue.new :mail_subscribers_queue, :size => 3 do |info|
-  foo = Foo.find info[:id]
-  # A custom ActionMailer class to send the email
-  SubscriberMailer.mail(foo).deliver
-end
 
-Foo.find(info[:id])
+  MAIL_SUBSCRIBERS_QUEUE = HackerFriday::WorkQueue.new :mail_subscribers_queue, :size => 3 do |info|
+    foo = Foo.find info[:id]
+    Foo.find(info[:id])
+    Foo.find(info[:id])
+    # A custom ActionMailer class to send the email
+    SubscriberMailer.mail(foo).deliver
+  end
