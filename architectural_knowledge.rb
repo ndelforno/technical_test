@@ -1,30 +1,25 @@
 #Architectural Knowledge
-@customer = {:name => "john", :last_name => "smith", :email => "john@gmail.com", :facebook_logged => false, :google_logged => false, :email_answer => "", :survey_answer => "" }
 
-def self.facebook_login
-  @customer.facebook_logged = true
-end
+@customer = {:name => "john",
+   :last_name => "smith",
+   :email => "john@gmail.com",
+   :facebook_logged => false,
+   :google_logged => false,
+ }
 
-def self.facebook_logout
-  @customer.facebook_logged = false
-end
-
-def self.google_login
-  @customer.google_logged = true
-end
-
-def self.google_logout
-  @customer.google_logged = false
-end
+@survey = {:qestion => "would your recommend us to a friend",
+:customer_id => "",
+:email_answer => "",
+:survey_answer => "" }
 
 def buy(customer)
   mail (:to => customer.email,
-    :subject => "would your recommend us to a friend",
+    :subject => @survey.question,
     :link => "https//my_site/survey"
     :choices => ["yes", "no"])
 end
 
-#if answer received
+#when answer received
 def received_answer(email_answer) #will pass params[:choices]
   @customer.email_answer = email_answer #save customer's answer
   if @customer.email_answer === "Yes"
@@ -38,11 +33,10 @@ def received_answer(email_answer) #will pass params[:choices]
   else
     redirect_to "https//my_site/survey"
     render "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
-    @customer.survey_answer = params[:survey_answer] #save customer's survey answer
+    @survey.customer_id = @customer.id #save customer's id in survey table
+    @survey.survey_answer = params[:survey_answer] #save customer's survey answer
   end
 end
-
-
 
 
 # #pseudo code
