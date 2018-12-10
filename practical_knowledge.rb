@@ -45,3 +45,34 @@ for i in 1..30 do
     puts i
   end
 end
+
+#4. What may happen if Foo.find(info[:id]) is called multiple times concurrently with the following code?
+
+# class FooController < ActionController::Base
+#   respond_to :html
+#
+#   def create
+#     @foo = Foo.new params[:foo] @foo.save
+#     mail_subscribers_with @foo.id
+#     respond_with @foo
+#   end
+# end
+#
+# Has a job:
+#
+# def mail_subscribers_with(id)
+#   MAIL_SUBSCRIBERS_QUEUE.push :id => id
+# end
+#
+# And has a queue:
+#   MAIL_SUBSCRIBERS_QUEUE = HackerFriday::WorkQueue.new :mail_subscribers_queue, :size => 3 do |info|
+#   foo = Foo.find info[:id]
+#   # A custom ActionMailer class to send the email
+#   SubscriberMailer.mail(foo).deliver
+# end
+
+#5. How could the following data structure be improved?
+
+- create multiples tables instead of one: a table for person and a table for pet
+- join these tables with relationship and provide pet with a pet_owner_id 
+- give a last_name attribute to differenciate person with same name
