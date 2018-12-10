@@ -2,7 +2,7 @@
 
 1. Explain what a first class object is
 
-  a first class object is an object that can be use without any restrictions, it can be stored, returned, changed, and assigned
+  A first class object is an object that can be use without any restrictions, it can be stored, returned, changed, and assigned
   example: a first class object can be assign into a variable but a method can't.
 
 
@@ -11,12 +11,12 @@
  The inheritance is a relationship between class and sub-class. that allow a sub-class to use methods or share attributes from the parent class.
  For example class Student and Instructor can have the same parent: Person.
 
- It is important because because sub-class can use all the possibilities offered by the parent class without interfering with each-other. And it make an object hierarchy to better understand and reuse code.
+ It is important because because sub-class can use all the possibilities offered by the parent class without interfering with each-other. And it make an objects hierarchy to better understand and reuse code.
 
 
 3. What is the main benefit of scoping?
 
- scoping give us the ability to find where a variable is accessible
+ Scoping give us the ability to find where a variable is accessible
 
 
 4. Explain the difference between a LEFT & RIGHT join

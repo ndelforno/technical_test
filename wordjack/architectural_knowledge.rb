@@ -18,11 +18,12 @@ def buy(customer, survey)
   mail (:to => customer.email,
     :subject => survey.question,
     :link => "https//my_site/survey"
-    :choices => ["yes", "no"])
+    :choices => ["yes", "no"]
+  )
 end
 
 #when answer received
-def received_answer(email_answer, customer, survey) #email_answer will be params[:customer_choice]
+def received_answer(email_answer, customer, survey) #email_answer will be something like params[:customer_choice]
   survey.email_answer = email_answer #save customer's answer
   survey.customer_id = customer.id #save customer's id in survey's table
   if survey.email_answer === "Yes"
@@ -37,7 +38,7 @@ def received_answer(email_answer, customer, survey) #email_answer will be params
     redirect_to "https//my_site/survey"
     survey.question = "How could we have improved? Would you like to be contacted to settle any outstanding issues?"
     print survey.question
-    survey.survey_answer = params[:survey_answer] #save customer's survey answer
+    survey.survey_answer = params[:survey_answer] #save customer's survey answer by using params
   end
 end
 
